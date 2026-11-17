@@ -1,0 +1,232 @@
+/* =====================================================
+   AKLikha – Filipino Arts & Artist
+   Design size: 1159px wide (= 1440 x 3200 when scaled)
+   Sections: 1 Base · 2 Header · 3 Hero · 4 Section titles
+             5 Carousels · 6 Contact · 7 Footer · 8 Pop-up
+   ===================================================== */
+
+/* ---------- 1. BASE ---------- */
+:root {
+  --red:    #c71a1e;
+  --black:  #100b0d;
+  --cream:  #f7f1e5;
+  --brown:  #875c43;
+  --tan:    #c08965;
+  --maroon: #841815;
+  --deep:   #1a0709;
+  --beige:  #d9b79b;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+
+/* The whole page is built at 1159px and scaled to the screen by script.js */
+#page { width: 1159px; overflow-x: clip; transform-origin: top left; }
+
+/* Shared button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 30px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--red);
+  color: var(--cream);
+  font: 600 17px 'Montserrat', sans-serif;
+  box-shadow: 0 4px 10px #0008;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.btn:hover { background: var(--maroon); transform: translateY(-2px); }
+.btn svg   { width: 34px; height: 14px; }
+.btn.small { padding: 2px 14px; border-radius: 14px; font-size: 12px; }
+
+
+/* ---------- 2. HEADER ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 124px;
+  padding: 6px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--cream);
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand img   { width: 116px; height: 116px; object-fit: contain; }
+.brand b     { display: block; font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: 0.5px; color: var(--black); }
+.brand b span { color: var(--red); }
+.brand small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--black); }
+
+nav { display: flex; gap: 40px; }
+nav a { position: relative; font-size: 24px; font-weight: 600; color: var(--black); }
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: var(--red);
+  transition: 0.3s;
+}
+nav a:hover::after,
+nav a.on::after { width: 100%; }
+
+
+/* ---------- 3. HERO ---------- */
+.hero {
+  position: relative;
+  height: 556px;
+  overflow: hidden;
+}
+
+.flag { position: absolute; left: 0; top: 11px; width: 770px; opacity: 0.95; }
+
+.ring { position: absolute; animation: spin 60s linear infinite; }
+.ring-top    { right: -90px;  top: -40px;     width: 420px; opacity: 0.55; }
+.ring-bottom { right: -120px; bottom: -190px; width: 380px; opacity: 0.5; animation-duration: 80s; animation-direction: reverse; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hero-text { position: relative; z-index: 2; max-width: 560px; margin-left: 495px; padding-top: 86px; }
+.hero h1   { margin: 0; font-size: 40px; font-weight: 700; line-height: 1.2; }
+.hero h1 i { font-weight: 600; }
+.hero .red { color: var(--red); }
+.hero p    { max-width: 470px; margin: 14px 0 40px; font-size: 26px; font-weight: 500; line-height: 1.2; }
+.hero .btn { margin-left: 283px; }
+
+
+/* ---------- 4. SECTIONS & TITLES ---------- */
+section { position: relative; padding: 15px 0 0; overflow: hidden; }
+#exhibit { height: 645px; }
+#artist  { height: 635px; }
+#contact { height: 513px; }
+
+.section-title { display: flex; align-items: center; gap: 22px; margin-bottom: 20px; padding: 0 143px 0 72px; }
+.section-title::before { content: ""; flex: none; width: 26px; height: 68px; background: var(--red); border-radius: 2px; }
+.section-title h2 { margin: 0; font-size: 32px; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; }
+.section-title hr { flex: 1; margin: 0; border: 0; border-top: 2px solid var(--cream); }
+
+.deco { position: absolute; opacity: 0.6; pointer-events: none; }
+.deco-left  { left: -130px;  top: 260px;    width: 300px; }
+.deco-right { right: -150px; bottom: -170px; width: 420px; }
+
+
+/* ---------- 5. CAROUSELS ---------- */
+.carousel { display: flex; align-items: center; padding: 0 92px; }
+.viewport { flex: 1; overflow: hidden; padding: 55px 0 45px; }
+.track    { display: flex; gap: 92px; transition: transform 0.7s cubic-bezier(.4, 0, .2, 1); will-change: transform; }
+
+/* Card */
+.card {
+  flex: none;
+  width: 193px;
+  display: flex;
+  flex-direction: column;
+  padding: 11px 11px 12px;
+  background: #dcdcdc;
+  color: var(--black);
+  text-align: center;
+  transition: transform 0.7s cubic-bezier(.4, 0, .2, 1);
+}
+.card.active { transform: scale(1.4); z-index: 2; box-shadow: 0 10px 30px #000a; }
+
+.frame { height: 170px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--maroon); }
+.frame img { width: 100%; max-height: 100%; object-fit: cover; }
+.frame.portrait img { height: 100%; object-position: center 20%; }
+
+.card h4 { min-height: 50px; margin: 12px 0 6px; font-size: 13px; font-weight: 500; line-height: 1.25; }
+.card h4 em { display: block; margin-top: 4px; font-size: 11px; font-style: normal; font-weight: 400; line-height: 1.3; }
+.card .more { align-self: flex-end; }
+
+/* Blank card at the start and end of each carousel */
+.card.blank .frame { background: #c4c4c4; }
+.card.blank .lines { height: 50px; margin: 12px 0 6px; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+.card.blank .lines i { height: 8px; background: #bdbdbd; border-radius: 4px; }
+.card.blank .lines i:last-child { width: 60%; align-self: center; }
+.card.blank .btn { visibility: hidden; }
+
+/* Arrows & dots */
+.arrow { flex: none; z-index: 3; width: 50px; height: 70px; padding: 0; border: 0; background: none; color: var(--cream); cursor: pointer; transition: 0.2s; }
+.arrow:hover { color: var(--red); transform: scale(1.15); }
+.arrow svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: square; }
+
+.dots { display: flex; justify-content: center; gap: 10px; }
+.dots b { width: 10px; height: 10px; border-radius: 50%; background: #fff3; cursor: pointer; transition: 0.3s; }
+.dots b.on { width: 26px; border-radius: 6px; background: var(--red); }
+
+
+/* ---------- 6. CONTACT ---------- */
+.contact-title { padding-left: 25px; }
+.contact-title::before { display: none; }
+
+.phone-icon { flex: none; width: 88px; height: 88px; display: grid; place-items: center; border-radius: 50%; background: var(--red); }
+.phone-icon img { width: 46px; height: 54px; object-fit: contain; }
+
+.contact-wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; align-items: start; padding: 30px 60px 0; }
+
+.links { display: flex; flex-direction: column; gap: 26px; }
+.links a { display: flex; align-items: center; gap: 22px; font-size: 26px; font-weight: 600; }
+.links img { flex: none; width: 72px; height: 72px; object-fit: contain; transition: 0.25s; }
+.links a:hover img  { transform: scale(1.1); }
+.links a:hover span { color: var(--tan); }
+
+.comments h3 { margin: 0 0 12px; font-size: 32px; font-weight: 600; }
+.comments textarea {
+  width: 100%;
+  height: 140px;
+  padding: 14px;
+  border: 4px solid #c9c9c9;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--black);
+  font: 500 16px 'Montserrat', sans-serif;
+  resize: vertical;
+}
+.comments textarea:focus { outline: 3px solid var(--red); }
+.comments-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
+#commentMsg { color: var(--beige); font-size: 14px; font-weight: 500; }
+
+
+/* ---------- 7. FOOTER ---------- */
+footer {
+  height: 72px;
+  margin: 0 21px 31px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  background: var(--cream);
+  color: var(--black);
+}
+footer b { font-size: 36px; font-weight: 800; }
+footer b span { color: var(--red); }
+footer small { font-size: 13px; font-weight: 500; }
+footer .divider { width: 2px; height: 34px; background: var(--black); }
+footer .copy { margin-left: 20px; font-size: 13px; font-weight: 600; }
+
+
+/* ---------- 8. "MORE..." POP-UP ---------- */
+.modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; background: #000c; }
+.modal.open { display: flex; }
+
+.modal-box { position: relative; display: grid; gap: 16px; width: 100%; max-width: 640px; max-height: 90vh; overflow: auto; padding: 22px; border-top: 8px solid var(--red); background: var(--cream); color: var(--black); }
+.modal-box img { width: 100%; max-height: 340px; object-fit: contain; background: var(--deep); }
+.modal-box h3 { margin: 0; font-size: 24px; }
+.modal-box p  { margin: 0; font-size: 15px; line-height: 1.6; }
+.modal-box small { color: var(--brown); font-weight: 600; }
+.modal-close { position: absolute; top: 6px; right: 12px; border: 0; background: none; color: var(--maroon); font-size: 32px; cursor: pointer; }
